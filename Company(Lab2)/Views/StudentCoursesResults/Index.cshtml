@@ -1,0 +1,44 @@
+﻿@model List<StudentCourseResultViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Student Courses Results</h1>
+
+<table class="table table-hover table-bordered"> 
+    <thead>
+        <tr>
+        <td>Trainee Name</td>
+        <td>Student picture</td>
+        <td>Course</td>
+        <td>Student Degree</td>
+        <td>Student State</td>
+        @* <td>Show detalis</td> *@
+        @* <td>Edit detalis</td> *@
+        </tr>
+    </thead>
+    @foreach (StudentCourseResultViewModel SCR in Model)
+    {
+        <tr>
+            <td>@SCR.TraineeName</td>
+            <td>
+                <img src="~/Images/@SCR.TraineImgURL" style="width:100px" />
+            </td>
+            <td>@SCR.CourseName</td>
+            <td>@SCR.Degree</td>
+
+            @if(SCR.ColorState =="pass"){
+                <td style="color : green;" >Pass</td>
+            }
+            else {
+                <td style="color : red;">Failed</td>
+            }           
+            @* <td><a type="button" class="btn btn-primary" href="/instructor/Details?Id=@ins.Id">  Show Details </a> </td> *@
+            @* <td><a type="button" class="btn btn-primary" href="/instructor/Edit?Id=@ins.Id">  Edit Details </a> </td> *@
+        </tr>
+    }
+
+</table>
+
+<script src="~/"></script>

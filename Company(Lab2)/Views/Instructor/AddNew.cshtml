@@ -1,0 +1,83 @@
+﻿@model InstrWithCrsViewModel
+@{
+    ViewData["Title"] = "AddNew";
+}
+
+@* ------------------------------------------------------------------------------------------------------------ *@
+
+<h1>Add Instructor</h1>
+
+
+<form method="post" action="/Instructor/AddNew">
+    <div>
+        <label>Name</label>
+        <input class="form form-control" name="Name" id="Name" value="@Model?.Name" />
+    </div>
+    <div>
+        <label>Address</label>
+        <input class="form form-control" name="Address" id="Address" value="@Model?.Address" />
+    </div>
+    <div>
+        <label>ImgURL</label>
+        <input class="form form-control" name="ImgURL" id="ImgURL" value="@Model?.ImgURL" />
+    </div>
+
+    <div>
+        <label>Salary</label>
+        <input class="form form-control" name="Salary" id="Salary" value="@Model?.Salary" />
+    </div>
+
+    <label>Department</label>
+    <select class="form form-control" id="DepartmentId" name="DepartmentId" onchange="GetCourseList(this.value)">
+        @foreach (var depItem in Model.Departments)
+        {
+            if (Model.DepartmentId == depItem.Id)
+            {
+                <option value="@depItem.Id" selected> @depItem.Name </option>
+            }
+            else
+            {
+                <option value="@depItem.Id"> @depItem.Name </option>
+            }
+        }
+    </select>
+
+
+    <label>Course</label>
+    <select class="form form-control" id="CourseId" name="CourseId">
+    </select>
+    
+        @* @foreach (Course CrsItem in Model.Courses) *@
+        @* { *@
+        @*     if (Model.CourseId == CrsItem.Id) *@
+        @*     { *@
+        @*         <option value="@CrsItem.Id" selected> @CrsItem.Name </option> *@
+        @*     } *@
+        @*     else *@
+        @*     { *@
+        @*         <option value="@CrsItem.Id"> @CrsItem.Name </option> *@
+        @*     } *@
+        @* } *@
+
+    <input type="submit" value="Create" class="btn btn-success" />
+</form>
+
+<a type="button" class="btn btn-primary" href="/Instructor/Index">  Show Instructors </a>
+<a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    function GetCourseList(deptId){
+        $.ajax({
+            url: "/Course/GetAllByDeptId/" +deptId,
+            success: function(result){
+                let courseDropdown = $("#CourseId");
+                courseDropdown.empty();
+                courseDropdown.append('<option value="">Select a Course</option>'); 
+                $.each(result, function (index, course) {
+                    courseDropdown.append(`<option value="${course.id}">${course.name}</option>`);
+                });
+            }
+        });
+    }
+</script>

@@ -1,0 +1,55 @@
+﻿@model List<Instructor>
+
+
+<h1> All Instructors</h1>
+
+<a type="button" class="btn btn-primary" href="/Instructor/AddNew">  Add new Instructor </a>
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Salary</td>
+            <td>Address</td>
+            <td>Profil picture</td>
+            <td>Show detalis</td>
+            <td>Edit detalis</td>
+            <td>Delete </td>
+        </tr>
+    </thead>
+    @foreach(Instructor ins in Model){
+        <tr>
+            <td>@ins.Id</td>
+            <td>@ins.Name</td>
+            <td>@ins.Salary</td>
+            <td>@ins.Address</td>
+            <td>
+                <img src="~/Images/@ins.ImgURL" style="width:50px" />
+            </td>
+            <td><a type="button" class="btn btn-primary" href="/instructor/Details?Id=@ins.Id">  Show Details </a> </td>
+            <td><a type="button" class="btn btn-primary" href="/instructor/Edit?Id=@ins.Id">  Edit Details </a> </td>
+            <td>
+         
+            </td>
+        </tr>
+    }
+    
+</table>
+
+
+@* rest of file with view *@
+
+@if (ViewBag.Page > 0)
+{
+    <a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"
+       class="btn btn-default">
+        &laquo; Prev
+    </a>
+}
+@if (ViewBag.Page < ViewBag.MaxPage)
+{
+    <a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"
+       class="btn btn-default">
+        Next &raquo;
+    </a>
+}

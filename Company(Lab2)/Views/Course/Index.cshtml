@@ -1,0 +1,41 @@
+﻿@model List<Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Courses List</h1>
+
+<a type="button" class="btn btn-primary" href="/Course/AddNew">  Add new Course </a>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Hours</td>
+            <td>Department</td>
+            <td>Degree</td>
+            <td>Minmun Degree</td>
+
+            <td>Show detalis</td>
+            <td>Edit detalis</td>
+        </tr>
+    </thead>
+    
+    @foreach (Course crs in Model)
+    {
+        <tr>
+            <td>@crs.Id</td>
+            <td>@crs.Name</td>
+            <td>@crs.Hours</td>
+            <td>@crs.Department.Name</td>
+            <td>@crs.Degree</td>
+            <td>@crs.MinmunDegree</td>
+
+            <td><a type="button" class="btn btn-primary" href="/Course/Details?Id=@crs.Id">  Show Details </a> </td>
+            <td><a type="button" class="btn btn-primary" href="/Course/Edit?Id=@crs.Id">  Edit Details </a> </td>
+        </tr>
+    }
+
+</table>
