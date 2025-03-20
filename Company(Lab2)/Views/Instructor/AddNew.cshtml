@@ -42,23 +42,10 @@
         }
     </select>
 
-
     <label>Course</label>
     <select class="form form-control" id="CourseId" name="CourseId">
     </select>
     
-        @* @foreach (Course CrsItem in Model.Courses) *@
-        @* { *@
-        @*     if (Model.CourseId == CrsItem.Id) *@
-        @*     { *@
-        @*         <option value="@CrsItem.Id" selected> @CrsItem.Name </option> *@
-        @*     } *@
-        @*     else *@
-        @*     { *@
-        @*         <option value="@CrsItem.Id"> @CrsItem.Name </option> *@
-        @*     } *@
-        @* } *@
-
     <input type="submit" value="Create" class="btn btn-success" />
 </form>
 
@@ -81,3 +68,16 @@
         });
     }
 </script>
+
+
+@* @foreach (Course CrsItem in Model.Courses) *@
+@* { *@
+@*     if (Model.CourseId == CrsItem.Id) *@
+@*     { *@
+@*         <option value="@CrsItem.Id" selected> @CrsItem.Name </option> *@
+@*     } *@
+@*     else *@
+@*     { *@
+@*         <option value="@CrsItem.Id"> @CrsItem.Name </option> *@
+@*     } *@
+@* } *@

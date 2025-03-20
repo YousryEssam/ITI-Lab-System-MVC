@@ -62,8 +62,5 @@ namespace Company_Lab2_.Controllers
             ViewBag.Depts = DepartmentRepository.GetAll(); 
             return View("AddNew", CrsFromCreation);
         }
-
-        //////////////////// Validation functions \\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
     }
 }
